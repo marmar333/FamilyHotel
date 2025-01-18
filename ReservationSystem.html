@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Search Form</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h1>Search for a Hotel Room</h1>
+
+  <form id="searchForm" action="searchResults.html" method="GET">
+    <label for="checkinDate">Check-in Date:</label>
+    <input type="date" id="checkinDate" name="checkin" required>
+
+    <label for="checkoutDate">Check-out Date:</label>
+    <input type="date" id="checkoutDate" name="checkout" required>
+
+    <button type="submit">Search</button>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>
