@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Hotel Reservation</title>
+</head>
+<body>
+
+    <section id="welcome">
+        <h1>&#9734; Welcome to our family hotel &#9734;</h1>
+        <div class="home-container">
+            <div class="info">
+                <h1>Hotel Reservation</h1>
+            </div>
+        </div>
+    </section>
+
+    <div class="site-content">   
+        <!-- Site Content -->
+
+        <!-- Guest Details Form -->
+        <div class="guest-details-form-content custom-form hidden">
+            <div class="background">
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+            <form id="guestForm">
+                <h3>Personal Information</h3>
+
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="phone-number">Phone Number:</label>
+                <input type="number" id="phone-number" name="phone-number" required>
+
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" required>
+
+                <div class="buttons">
+                    <button id="guest-details-back-btn" type="button">Back</button>
+                    <button id="guest-details-next-btn" type="button">Next</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Reservation Form -->
+        <div class="reservation-form-content custom-form">
+            <form id="reservationForm">
+                <h3>Search for a Hotel Room</h3>
+
+                <label for="checkinDate">Check-in Date:</label>
+                <input type="date" id="checkinDate" name="checkin" required>
+
+                <label for="checkoutDate">Check-out Date:</label>
+                <input type="date" id="checkoutDate" name="checkout" required>
+
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <!-- Thank You Message -->
+        <div class="thank-you-content custom-form hidden">
+            <div class="background">
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+            <form class="thank-you">
+                <h3>Thank you for your reservation!</h3>
+                <button id="new-reservation" type="button">Make new reservation</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script src="solution.js"></script>
+    <script>
+        // Date validation for reservation form
+        document.getElementById('reservationForm').addEventListener('submit', function(event) {
+            const checkinDate = document.getElementById('checkinDate').value;
+            const checkoutDate = document.getElementById('checkoutDate').value;
+
+            if (new Date(checkoutDate) <= new Date(checkinDate)) {
+                event.preventDefault();
+                alert("Check-out date must be later than check-in date.");
+            }
+        });
+
+        // For hiding and showing forms based on user actions
+        const guestDetailsNextBtn = document.getElementById('guest-details-next-btn');
+        const guestDetailsBackBtn = document.getElementById('guest-details-back-btn');
+        const guestFormContent = document.querySelector('.guest-details-form-content');
+        const reservationFormContent = document.querySelector('.reservation-form-content');
+        const thankYouFormContent = document.querySelector('.thank-you-content');
+
+        guestDetailsNextBtn.addEventListener('click', function() {
+            guestFormContent.classList.add('hidden');
+            reservationFormContent.classList.remove('hidden');
+        });
+
+        guestDetailsBackBtn.addEventListener('click', function() {
+            guestFormContent.classList.remove('hidden');
+            reservationFormContent.classList.add('hidden');
+        });
+
+        document.getElementById('new-reservation').addEventListener('click', function() {
+            thankYouFormContent.classList.add('hidden');
+            guestFormContent.classList.remove('hidden');
+        });
+    </script>
+
+</body>
+</html>
